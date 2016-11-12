@@ -13,4 +13,5 @@ This tutorial contains five parts:
 > 5. Contract Interactions
 
 This tutorial I will focus on the back-end solidity part, and will update the web.js and front-end parts in the future.
+
 If you have further questions or issues on the source code or explanation, feel free to throw it out, and I'll catch it
