@@ -20,6 +20,13 @@ contract Stakeholder{
     string smartProperty1;
     string smartProperty2;
   }
+
+  struct properties{
+    uint id;
+    address owner;
+    string name;
+  }
+
   mapping(address => info) public StakeholderInfo;
   mapping(uint => activities) public ValueActivity;
 

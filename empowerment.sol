@@ -1,8 +1,8 @@
 pragma solidity ^0.4.2;
 contract Stakeholder{
-  mapping(address => info) public StakeholderInfo;
-  mapping(uint => activities) public ValueActivity;
+
   address public owner;
+
   struct info{
     bool active;
     string name;
@@ -16,6 +16,14 @@ contract Stakeholder{
     string smartProperty1;
     string smartProperty2;
   }
+  struct properties{
+    uint id;
+    address owner;
+    string name;
+  }
+
+  mapping(address => info) public StakeholderInfo;
+  mapping(uint => activities) public ValueActivity;
 
   function Stakeholder(){
     owner = msg.sender;

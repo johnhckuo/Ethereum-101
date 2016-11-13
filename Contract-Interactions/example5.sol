@@ -6,7 +6,8 @@ contract Stakeholder{
   struct info{
     bool active;
     string name;
-    uint256 balance;
+    uint256 id;
+    uint256 time;
   }
   struct activities{
     address stakeholder1;
@@ -16,6 +17,11 @@ contract Stakeholder{
     string smartProperty1;
     string smartProperty2;
   }
+  struct properties{
+    uint id;
+    address owner;
+    string name;
+  }
 
   mapping(address => info) public StakeholderInfo;
   mapping(uint => activities) public ValueActivity;
@@ -24,11 +30,12 @@ contract Stakeholder{
     serviceProvider = msg.sender;
   }
 
-  function registerStakeholder(string _name, uint256 _balance){
+  function registerStakeholder(string _name, uint256 _id){
     StakeholderInfo[msg.sender]= info({
         active:true,
         name:_name,
-        balance:_balance
+        id:_id,
+        time:now
     });
   }
 
@@ -41,10 +48,23 @@ contract Stakeholder{
     });
   }
 
-  function update(bool _active, string _name, uint256 _balance){
-    StakeholderInfo[msg.sender].active = _active;
-    StakeholderInfo[msg.sender].name = _name;
-    StakeholderInfo[msg.sender].balance = _balance;
+  function returnActive(address ADDR) returns (bool){
+    return StakeholderInfo[ADDR].active;
+  }
+
+  modifier ownerOnly{
+      if (msg.sender != serviceProvider){
+          throw;
+      }else{
+          _;
+      }
+  }
+
+  function update(address ADDR, bool _active, string _name, uint256 _id) ownerOnly{
+    StakeholderInfo[ADDR].active = _active;
+    StakeholderInfo[ADDR].name = _name;
+    StakeholderInfo[ADDR].id = _id;
+    StakeholderInfo[ADDR].time = now;
   }
 }
 
@@ -102,8 +122,8 @@ contract ServiceProvider{
   }
 
   modifier StakeholderOnly(address ADDR){
-    Stakeholder sh = Stakeholder(ADDR);
-    if (!sh.returnActiveSH(ADDR)){
+
+    if (!sh.returnActive(ADDR)){
       throw;
     }else{
       _;
@@ -112,6 +132,11 @@ contract ServiceProvider{
 
   function provideEmpowermentData(address ADDR) StakeholderOnly(ADDR){
     // wait for further update
+  }
+
+  function update(address customerADDR, bool _active, string _name, uint256 _id){
+    Customer customer1 = Customer(customerADDR);
+    customer1.update(customerADDR, _active, _name, _id);
   }
 
 }

@@ -11,6 +11,7 @@ This tutorial contains five parts:
 > 3. Modifiers
 > 4. Variables
 > 5. Contract Interactions
+> 6. Oracle Service
 
 This tutorial I will focus on the back-end solidity part, and will update the web.js and front-end parts in the future.
 

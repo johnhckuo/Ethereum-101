@@ -38,6 +38,19 @@ contract Stakeholder{
 It seems complex, but actually it is simplyly comprised by three parts: variables, constructor, and functions
 > + Variables contains the resources for further operation
 > + Contructor is a special function that will be initialized in the beginning or this contract will fail to deploy
-> + Functions act as means to alter the value of variables and implement our logic to fulfill certain task 
+> + Functions act as means to alter the value of variables and implement our logic to fulfill certain task
 
 Note: In the update of Solidity 0.4.0, each contract will need to specify `pragma solidity ^0.4.2; ` in the first line of .sol file
+
+### Trivial Concepts
+There are some concepts might bother you while getting into solidity programming in the first time. Here's some tips.
+#### 1.promise
+In order to deal with some async function, we need to set promise for the convenience of operation serialization.
+#### 2.callback function
+Briefly speaking, it is just a function waiting to be executed if the other function complete query.
+#### 3.gas
+Gas acts as a input resource to make car move, and so is the meaning of gas stands for Ethereum : to get things work.
+#### 4.Invalid JUMP error
+When compiling your smart contract, you might encounter this error for some reasons. They can be either the existence of run-time errors in your code or a `throw` occured.
+#### 5.throw
+What is worth notice here is that once a contract throw an exception, it will consume all the gas. (part of the reasons is that Ethereum want to prevent malicious attack)

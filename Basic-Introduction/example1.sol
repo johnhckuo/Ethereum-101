@@ -1,3 +1,4 @@
+pragma solidity ^0.4.2;
 contract Stakeholder{
 
   // Solidity will generate a function for returning the value of public varialbes
