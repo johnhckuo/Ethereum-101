@@ -2,6 +2,7 @@
 Advance smart contract manipulations
 
 ###Explanation
+Ok！Now we know how to interact with our parent contract by using inheritance, but how about those we are not heir to?
 I'm gonna introduce two ways for advanced contract interaction.
 The first one is to interact with the struct object defined with the same contract.
 It is more intuitive, but I'll still show you the convenience of struct.
@@ -34,3 +35,5 @@ function update(address ADDR, bool _active, string _name, uint256 _id) ownerOnly
   StakeholderInfo[ADDR].time = now;
 }
 ```
+
+Furthermore, We can also combine these two methods to fit in some scenarios more efficiently！
