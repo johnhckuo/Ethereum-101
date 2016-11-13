@@ -17,4 +17,4 @@ The following describe the underlying mechanism of the Oralize service.
 Note: Currently, Oraclize support for both MainNet and TestNet (Testnet for free！) But if you want to use it in private net, `Ethereum-Bridge` will be a good starting point.
 
 For further info, you can visit the official Oraclize document https://docs.oraclize.it/
-and the api https://dev.oraclize.it/api.sol
+and Oraclize api https://dev.oraclize.it/api.sol
