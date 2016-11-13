@@ -1,6 +1,7 @@
 # Smart Contract Interaction
 Advance smart contract manipulations
 
+###Explanation
 I'm gonna introduce two ways for advanced contract interaction.
 The first one is to interact with the struct object defined with the same contract.
 It is more intuitive, but I'll still show you the convenience of struct.
