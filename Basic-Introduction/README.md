@@ -43,14 +43,14 @@ It seems complex, but actually it is simplyly comprised by three parts: variable
 Note: In the update of Solidity 0.4.0, each contract will need to specify `pragma solidity ^0.4.2; ` in the first line of .sol file
 
 ### Trivial Concepts
-There are some concepts might bother you while getting into solidity programming in the first time. Here's some tips.
-#### 1.promise
+There are some concepts might bother you while getting into solidity programming in the first time. Here are some tips.
+#### 1. promise
 In order to deal with some async function, we need to set promise for the convenience of operation serialization.
-#### 2.callback function
+#### 2. callback function
 Briefly speaking, it is just a function waiting to be executed if the other function complete query.
-#### 3.gas
+#### 3. gas
 Gas acts as a input resource to make car move, and so is the meaning of gas stands for Ethereum : to get things work.
-#### 4.Invalid JUMP error
+#### 4. Invalid JUMP error
 When compiling your smart contract, you might encounter this error for some reasons. They can be either the existence of run-time errors in your code or a `throw` occured.
-#### 5.throw
+#### 5. Throw
 What is worth notice here is that once a contract throw an exception, it will consume all the gas. (part of the reasons is that Ethereum want to prevent malicious attack)
