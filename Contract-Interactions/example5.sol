@@ -134,9 +134,9 @@ contract ServiceProvider{
     // wait for further update
   }
 
-  function update(address customerADDR, bool _active, string _name, uint256 _id){
+  function update(address customerADDR, address targetADDR, bool _active, string _name, uint256 _id){
     Customer customer1 = Customer(customerADDR);
-    customer1.update(customerADDR, _active, _name, _id);
+    customer1.update(targetADDR, _active, _name, _id);
   }
 
 }

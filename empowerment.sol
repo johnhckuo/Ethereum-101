@@ -1,12 +1,13 @@
 pragma solidity ^0.4.2;
 contract Stakeholder{
 
-  address public owner;
+  address public serviceProvider;
 
   struct info{
     bool active;
     string name;
-    uint256 balance;
+    uint256 id;
+    uint256 time;
   }
   struct activities{
     address stakeholder1;
@@ -26,17 +27,16 @@ contract Stakeholder{
   mapping(uint => activities) public ValueActivity;
 
   function Stakeholder(){
-    owner = msg.sender;
+    serviceProvider = msg.sender;
   }
 
-  function registerStakeholder(string _name, uint256 _balance){
+  function registerStakeholder(string _name, uint256 _id){
     StakeholderInfo[msg.sender]= info({
         active:true,
         name:_name,
-        balance:_balance
-
+        id:_id,
+        time:now
     });
-
   }
 
   function registerValueActivity(uint id, address SH1, address SH2, string SP1, string SP2){
@@ -48,81 +48,95 @@ contract Stakeholder{
     });
   }
 
-  function update(bool _active, string _name, uint256 _balance){
-    StakeholderInfo[msg.sender].active = _active;
-    StakeholderInfo[msg.sender].name = _name;
-    StakeholderInfo[msg.sender].balance = _balance;
-
-  }
-  function returnActiveSH(address ADDR) returns (bool){
-      return StakeholderInfo[ADDR].active;
+  function returnActive(address ADDR) returns (bool){
+    return StakeholderInfo[ADDR].active;
   }
 
+  modifier ownerOnly{
+      if (msg.sender != serviceProvider){
+          throw;
+      }else{
+          _;
+      }
+  }
+
+  function update(address ADDR, bool _active, string _name, uint256 _id) ownerOnly{
+    StakeholderInfo[ADDR].active = _active;
+    StakeholderInfo[ADDR].name = _name;
+    StakeholderInfo[ADDR].id = _id;
+    StakeholderInfo[ADDR].time = now;
+  }
 }
+
 contract Customer is Stakeholder{
 
-    address interactADDR;
-    struct interactParties{
-        //address smartProperties;
-        bool interactable;
-        string SmartProperties;
-    }
-    mapping (address=> interactParties) Interacters;
-    address public owner;
+  address interactADDR;
 
-    function customer(){
-        owner = msg.sender;
-    }
+  struct interactParties{
+      //address smartProperties;
+      bool interactable;
+      string SmartProperties;
+  }
 
+  mapping (address=> interactParties) Interacters;
 
-    modifier InteracterOnly(address target){
+  function customer(){
 
-        if (!Interacters[target].interactable || owner != msg.sender){
-            throw;
-        } else{
-            _;
-        }
-    }
-    function valueActivity(address target) InteracterOnly(target){
-        //target.send(10);
+  }
 
-    }
-    function getInteracter(address ADDR) returns (string){
-        return Interacters[ADDR].SmartProperties;
-    }
+  modifier InteracterOnly(address target){
+      if (!Interacters[target].interactable || serviceProvider != msg.sender){
+          throw;
+      } else{
+          _;
+      }
+  }
+
+  function valueActivity(address target) InteracterOnly(target){
+      //target.send(10);
+  }
+
+  function getInteracter(address ADDR) returns (string){
+      return Interacters[ADDR].SmartProperties;
+  }
 
 }
 
+// This contract defines both what the service provider do and which module we provide
 contract ServiceProvider{
-  address public owner;
-  struct empowermentData{
+  address public serviceProvider;
 
-  }
   mapping(address => mapping(string => uint)) ResourceImportance;
 
   function ServiceProvider(){
-    owner = msg.sender;
+    serviceProvider = msg.sender;
   }
 
+  //fill out the address of Stakeholder contract
   address constant shADDR = 0x0;
   Stakeholder sh = Stakeholder(shADDR);
 
-    //module1
+  //empowerment module 1
   function queryEmpowermentData(address shADDR, string rADDR, uint importance){
     ResourceImportance[shADDR][rADDR] = importance;
   }
 
   modifier StakeholderOnly(address ADDR){
-    Stakeholder sh = Stakeholder(ADDR);
-    if (!sh.returnActiveSH(ADDR)){
+
+    if (!sh.returnActive(ADDR)){
       throw;
     }else{
       _;
     }
-
   }
+
   function provideEmpowermentData(address ADDR) StakeholderOnly(ADDR){
     // wait for further update
+  }
+
+  function update(address customerADDR, address targetADDR, bool _active, string _name, uint256 _id){
+    Customer customer1 = Customer(customerADDR);
+    customer1.update(targetADDR, _active, _name, _id);
   }
 
 }
