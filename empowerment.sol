@@ -2,6 +2,7 @@ pragma solidity ^0.4.2;
 contract Stakeholder{
 
   address public serviceProvider;
+  string public serviceName;
 
   struct info{
     bool active;
@@ -26,7 +27,8 @@ contract Stakeholder{
   mapping(address => info) public StakeholderInfo;
   mapping(uint => activities) public ValueActivity;
 
-  function Stakeholder(){
+  function Stakeholder(string _name){
+    serviceName = _name;
     serviceProvider = msg.sender;
   }
 
