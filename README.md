@@ -5,7 +5,7 @@ A tutorial for Solidity newbies :)
 `This tutorial uses solidity ^0.4.2, but it is also compatible with solidity ^0.4.0 or higher version.`
 
 
-This tutorial contains five parts:
+This tutorial contains six parts:
 > 1. Basic Introduction
 > 2. Inheritance
 > 3. Modifiers
