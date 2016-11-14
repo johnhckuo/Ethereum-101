@@ -35,7 +35,7 @@ contract Stakeholder{
 
 ```
 
-It seems complex, but actually it is simplyly comprised by three parts: variables, constructor, and functions
+It seems complex, but actually it is simply comprised by three parts: variables, constructor, and functions
 > + Variables contains the resources for further operation
 > + Contructor is a special function that will be initialized in the beginning or this contract will fail to deploy
 > + Functions act as means to alter the value of variables and implement our logic to fulfill certain task
