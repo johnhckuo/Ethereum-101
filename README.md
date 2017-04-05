@@ -1,4 +1,4 @@
-# Smart Contract Manipulation
+# Blockchain Implementation 101
 A tutorial for Solidity newbies :)
 
 ###Introduction
