@@ -1,4 +1,4 @@
-# Blockchain Implementation 101
+# Solidity 101
 A tutorial for Solidity newbies :)
 
 ### Introduction
