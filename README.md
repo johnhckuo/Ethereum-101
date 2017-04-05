@@ -1,7 +1,7 @@
 # Blockchain Implementation 101
 A tutorial for Solidity newbies :)
 
-###Introduction
+### Introduction
 `This tutorial uses solidity ^0.4.2, but it is also compatible with solidity ^0.4.0 or higher version.`
 
 
